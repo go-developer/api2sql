@@ -20,6 +20,14 @@ github.com/go-developer/gopkg v0.0.0-20210304151851-5d0428059a6f h1:EL+cS+uNMzmd
 github.com/go-developer/gopkg v0.0.0-20210304151851-5d0428059a6f/go.mod h1:6NrwO899RrJUGuMtma6t6WcqN0RC/OSodHepqhgeXHk=
 github.com/go-developer/gopkg v0.0.0-20210304152545-e655c031b238 h1:Ko5vooIRoDdG0ebZVfVj5PmZEw287JZiqasBP/j+Pbc=
 github.com/go-developer/gopkg v0.0.0-20210304152545-e655c031b238/go.mod h1:6NrwO899RrJUGuMtma6t6WcqN0RC/OSodHepqhgeXHk=
+github.com/go-developer/gopkg v0.0.0-20210304160258-9b861374e3ef h1:c/Yl9TmjlDE5bGJvtwfXigSF2MoBZBWzHOMLNFAU+QA=
+github.com/go-developer/gopkg v0.0.0-20210304160258-9b861374e3ef/go.mod h1:6NrwO899RrJUGuMtma6t6WcqN0RC/OSodHepqhgeXHk=
+github.com/go-developer/gopkg v0.0.0-20210304161818-fd20f828fe82 h1:CuySVqIWtUShHXcycYu62MlagfH4elC6slMYUzC7dCM=
+github.com/go-developer/gopkg v0.0.0-20210304161818-fd20f828fe82/go.mod h1:6NrwO899RrJUGuMtma6t6WcqN0RC/OSodHepqhgeXHk=
+github.com/go-developer/gopkg v0.0.0-20210304162028-c663438a27a3 h1:SyNFH3n4PwkiKjXar6ZJocko27Ll8ivhHzJIyLuaJnE=
+github.com/go-developer/gopkg v0.0.0-20210304162028-c663438a27a3/go.mod h1:6NrwO899RrJUGuMtma6t6WcqN0RC/OSodHepqhgeXHk=
+github.com/go-developer/gopkg v0.0.0-20210304164641-38a2e3b582e0 h1:z21Z2UrGigJkHdPu12zps33zPuU/JDlYT9kTr44MlII=
+github.com/go-developer/gopkg v0.0.0-20210304164641-38a2e3b582e0/go.mod h1:6NrwO899RrJUGuMtma6t6WcqN0RC/OSodHepqhgeXHk=
 github.com/go-playground/assert/v2 v2.0.1/go.mod h1:VDjEfimB/XKnb+ZQfWdccd7VUvScMdVu0Titje2rxJ4=
 github.com/go-playground/locales v0.13.0 h1:HyWk6mgj5qFqCT5fjGBuRArbVDfE4hi8+e8ceBS/t7Q=
 github.com/go-playground/locales v0.13.0/go.mod h1:taPMhCMXrRLJO55olJkUXHZBHCxTMfnGwq/HNwmWNS8=
