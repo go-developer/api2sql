@@ -64,10 +64,27 @@ func (m *Mysql) LoadAllDatabaseConfig() ([]define.DBInstance, error) {
 	return dbInstanceList, nil
 }
 
-func (m *Mysql) LoadAllAPIConfig() error {
-	panic("implement me")
+// LoadAllAPIConfig 加载全部API配置
+//
+// Author : go_developer@163.com<张德满>
+//
+// Date : 11:45 下午 2021/3/4
+func (m *Mysql) LoadAllAPIConfig() ([]define.Api, error) {
+	var (
+		err     error
+		apiList []define.Api
+	)
+	if err = m.client.Where("status = ?", define.APIStatusUsing).Find(&apiList).Error; nil != err {
+		return nil, err
+	}
+	return apiList, nil
 }
 
+// LoadAllAPIParamConfig 加载全部api参数
+//
+// Author : go_developer@163.com<张德满>
+//
+// Date : 11:46 下午 2021/3/4
 func (m *Mysql) LoadAllAPIParamConfig() error {
 	panic("implement me")
 }

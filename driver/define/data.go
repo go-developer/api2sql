@@ -42,7 +42,7 @@ const (
 	DBStatusWaitPublish = iota
 	// DBStatusUsing 使用中
 	DBStatusUsing
-	// 已下线
+	// DBStatusOffline 已下线
 	DBStatusOffline
 )
 
@@ -73,6 +73,11 @@ func (m *CacheInstance) TableName() string {
 	return CacheInstanceTableName
 }
 
+// Api 表数据结构
+//
+// Author : go_developer@163.com<张德满>
+//
+// Date : 11:50 下午 2021/3/4
 type Api struct {
 	ID           uint64    `json:"id" gorm:"column:id"`                         // API ID
 	DbID         uint64    `json:"db_id" gorm:"column:db_id"`                   // 数据库ID(db_instance 表主键id)
@@ -91,6 +96,17 @@ type Api struct {
 func (m *Api) TableName() string {
 	return APITableName
 }
+
+const (
+	// APIStatusWaitPublish 待上线
+	APIStatusWaitPublish = iota
+	// APIStatusUsing 使用中
+	APIStatusUsing
+	// APIStatusOffline 已下线
+	APIStatusOffline
+)
+
+// ============================= 以上为api表枚举定义
 
 // ApiParam api参数信息表
 type ApiParam struct {

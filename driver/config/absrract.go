@@ -20,7 +20,7 @@ type Config interface {
 	// LoadAllDatabaseConfig 加载全部的数据库配置
 	LoadAllDatabaseConfig() ([]define.DBInstance, error)
 	// 加载全部的API配置
-	LoadAllAPIConfig() error
+	LoadAllAPIConfig() ([]define.Api, error)
 	// 加载全部的API参数
 	LoadAllAPIParamConfig() error
 }
