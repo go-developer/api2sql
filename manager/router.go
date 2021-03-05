@@ -9,6 +9,7 @@ package manager
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/pkg/errors"
@@ -82,6 +83,7 @@ func (r *router) init() error {
 			return err
 		}
 		r.apiTable[apiInfo.FullURI] = apiInfo
+		routerGroupTable[apiInfo.DBInstanceID].GET(apiInfo.URI, r.proxy)
 	}
 
 	return r.ginRouter.Run(fmt.Sprintf(":%d", r.port))
@@ -139,4 +141,44 @@ func (r *router) buildApi(apiConfig define.Api, paramList []define.ApiParam) (*d
 		CacheConfig:  define2.CacheConfig{},
 	}
 	return info, nil
+}
+
+// proxy 统一请求处理
+//
+// Author : go_developer@163.com<张德满>
+//
+// Date : 9:53 下午 2021/3/5
+func (r *router) proxy(ctx *gin.Context) {
+	var (
+		err       error
+		result    []map[string]interface{}
+		apiConfig *define2.APIInfo
+		exist     bool
+	)
+	if apiConfig, exist = r.apiTable[ctx.Request.URL.Path]; !exist {
+		ctx.JSON(http.StatusOK, gin.H{
+			"code":     404,
+			"message":  "api not found",
+			"data":     nil,
+			"trace_id": "",
+		})
+		return
+	}
+
+	if err = r.dbClientTable[apiConfig.DBInstanceID].Client.Raw(apiConfig.SQL).Scan(&result).Error; nil != err {
+		ctx.JSON(http.StatusOK, gin.H{
+			"code":     500,
+			"message":  "sql 执行失败 : " + err.Error(),
+			"data":     nil,
+			"trace_id": "",
+		})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{
+		"code":     0,
+		"message":  "请求成功",
+		"data":     result,
+		"trace_id": "",
+	})
 }

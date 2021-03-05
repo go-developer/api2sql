@@ -83,6 +83,7 @@ type Api struct {
 	DbID         uint64    `json:"db_id" gorm:"column:db_id"`                   // 数据库ID(db_instance 表主键id)
 	URI          string    `json:"uri" gorm:"column:uri"`                       // 访问的URI
 	SQL          string    `json:"sql" gorm:"column:sql"`                       // api 对应的sql语
+	Status       uint      `json:"status" gorm:"column:status"`                 // api状态
 	Timeout      uint      `json:"timeout" gorm:"column:timeout"`               // 超时时间,单位ms,操作数据库的超时时间
 	EnableCache  uint      `json:"enable_cache" gorm:"column:enable_cache"`     // 是否启用数据缓存 0 - 否 1 - 是
 	CacheID      uint      `json:"cache_id" gorm:"column:cache_id"`             // 使用的缓存ID
