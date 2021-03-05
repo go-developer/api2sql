@@ -26,7 +26,7 @@ type DBInstance struct {
 	DbCharset         string    `json:"db_charset" gorm:"column:db_charset"`                   // 数据库编码
 	ReadOnly          uint      `json:"read_only" gorm:"column:read_only"`                     // 是否只读数据库, 0 - 否 1 - 是
 	MaxConnection     uint      `json:"max_connection" gorm:"column:max_connection"`           // 最大的连接数,默认 50
-	MaxIDleConnection uint      `json:"max_idle_connection" gorm:"column:max_idle_connection"` // 最大空闲连接数，默认25
+	MaxIdleConnection uint      `json:"max_idle_connection" gorm:"column:max_idle_connection"` // 最大空闲连接数，默认25
 	Description       string    `json:"description" gorm:"column:description"`                 // 数据库描述
 	CreateTime        time.Time `json:"create_time" gorm:"column:create_time"`                 // 创建时间
 	ModifyTime        time.Time `json:"modify_time" gorm:"column:modify_time"`                 // 更新时间

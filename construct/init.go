@@ -8,9 +8,6 @@
 package construct
 
 import (
-	"fmt"
-
-	"github.com/gin-gonic/gin"
 	"github.com/go-developer/api2sql/manager"
 	"github.com/go-developer/gopkg/middleware/mysql"
 )
@@ -37,10 +34,8 @@ func Run(dbConfig *mysql.DBConfig, logConf *mysql.LogConfig, listenPort int) err
 	if err := manager.InitParam(); nil != err {
 		return err
 	}
-	// 初始化路由实例
-	router := gin.Default()
 	// 启动端口监听
-	if err := router.Run(fmt.Sprintf(":%d", listenPort)); nil != err {
+	if err := manager.Run(listenPort); nil != err {
 		return err
 	}
 	return nil
