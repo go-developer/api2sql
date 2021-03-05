@@ -21,7 +21,12 @@ import (
 //
 // Date : 12:41 下午 2021/3/5
 func Run(dbConfig *mysql.DBConfig, logConf *mysql.LogConfig, listenPort int) error {
+	// 初始化配置管理
 	if err := manager.InitConfig(dbConfig, logConf); nil != err {
+		return err
+	}
+	// 初始化数据库实例
+	if err := manager.InitDatabase(); nil != err {
 		return err
 	}
 	// 初始化路由实例
