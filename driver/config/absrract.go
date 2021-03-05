@@ -22,5 +22,5 @@ type Config interface {
 	// 加载全部的API配置
 	LoadAllAPIConfig() ([]define.Api, error)
 	// 加载全部的API参数
-	LoadAllAPIParamConfig() error
+	LoadAllAPIParamConfig() ([]define.ApiParam, error)
 }

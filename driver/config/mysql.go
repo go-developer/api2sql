@@ -85,6 +85,13 @@ func (m *Mysql) LoadAllAPIConfig() ([]define.Api, error) {
 // Author : go_developer@163.com<张德满>
 //
 // Date : 11:46 下午 2021/3/4
-func (m *Mysql) LoadAllAPIParamConfig() error {
-	panic("implement me")
+func (m *Mysql) LoadAllAPIParamConfig() ([]define.ApiParam, error) {
+	var (
+		err          error
+		apiParamList []define.ApiParam
+	)
+	if err = m.client.Find(&apiParamList).Error; nil != err {
+		return nil, err
+	}
+	return apiParamList, nil
 }
