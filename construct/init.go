@@ -29,6 +29,10 @@ func Run(dbConfig *mysql.DBConfig, logConf *mysql.LogConfig, listenPort int) err
 	if err := manager.InitDatabase(); nil != err {
 		return err
 	}
+	// 初始化可用api列表
+	if err := manager.InitAPI(); nil != err {
+		return err
+	}
 	// 初始化路由实例
 	router := gin.Default()
 	// 启动端口监听
