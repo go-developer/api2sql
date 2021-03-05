@@ -3,6 +3,7 @@ module github.com/go-developer/api2sql
 go 1.16
 
 require (
+	github.com/gin-gonic/gin v1.6.3 // indirect
 	github.com/go-developer/gopkg v0.0.0-20210304164641-38a2e3b582e0 // indirect
 	github.com/go-playground/validator/v10 v10.4.1 // indirect
 	github.com/golang/protobuf v1.4.3 // indirect
