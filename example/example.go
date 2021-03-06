@@ -33,6 +33,7 @@ func main() {
 		Encoder:          logger.GetEncoder(),
 		ExtractFieldList: nil,
 		TraceFieldName:   "",
+		Skip:             0,
 	}
 	logConf.SplitConfig, err = logger.NewRotateLogConfig("/Users/zhangdeman/project/go-project/api2sql/logs", "test-api2sql.log")
 

@@ -139,6 +139,10 @@ func (r *router) buildApi(apiConfig define.Api, paramList []define.ApiParam) (*d
 		DBInstanceID: dbInstance.DbID,
 		RouterGroup:  dbInstance.Flag,
 		CacheConfig:  define2.CacheConfig{},
+		ParamList:    paramList,
+	}
+	if err := Regexp.SQL(info); nil != err {
+		return nil, err
 	}
 	return info, nil
 }

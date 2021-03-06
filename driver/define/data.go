@@ -116,6 +116,7 @@ type ApiParam struct {
 	ApiID        uint64    `json:"api_id" gorm:"column:api_id"`               // Param ID
 	Name         string    `json:"name" gorm:"column:name"`                   // 参数名
 	DataType     string    `json:"data_type" gorm:"column:data_type"`         // 参数类型
+	Sort         uint      `json:"sort" gorm:column:sort`                     // 参数的排序
 	DefaultValue string    `json:"default_value" gorm:"column:default_value"` // 默认值
 	IsRequired   uint      `json:"is_required" gorm:"column:is_required"`     // 是否必传 0 - 否 1 - 是
 	Description  string    `json:"description" gorm:"column:description"`     // 参数描述
