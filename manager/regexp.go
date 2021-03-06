@@ -76,7 +76,7 @@ func (r *reg) SQL(apiInfo *define.APIInfo) error {
 	sortIndex := 0
 	realParamList := make([]define2.ApiParam, 0)
 	for _, itemParam := range bindList {
-		key := fmt.Sprintf("{%s}", itemParam)
+		key := fmt.Sprintf("%s", itemParam)
 		if _, exist := bindParamTable[key]; exist {
 			realParamList = append(realParamList, paramTable[key])
 			continue
