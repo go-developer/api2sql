@@ -61,7 +61,7 @@ func (r *reg) SQL(apiInfo *define.APIInfo) error {
 	bindParamTable := make(map[string]bool)
 	for _, item := range bindList {
 		if item != "?" {
-			bindParamTable[fmt.Sprintf(item)] = true
+			bindParamTable[item] = true
 		}
 	}
 	paramTable := make(map[string]define2.ApiParam)
@@ -76,9 +76,8 @@ func (r *reg) SQL(apiInfo *define.APIInfo) error {
 	sortIndex := 0
 	realParamList := make([]define2.ApiParam, 0)
 	for _, itemParam := range bindList {
-		key := fmt.Sprintf("%s", itemParam)
-		if _, exist := bindParamTable[key]; exist {
-			realParamList = append(realParamList, paramTable[key])
+		if _, exist := bindParamTable[itemParam]; exist {
+			realParamList = append(realParamList, paramTable[itemParam])
 			continue
 		}
 		realParamList = append(realParamList, paramTable[fmt.Sprintf("%d", sortIndex)])
