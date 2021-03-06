@@ -34,7 +34,7 @@ func Run(listenPort int) error {
 	Router = &router{
 		ginRouter:     gin.Default(),
 		port:          listenPort,
-		dbClientTable: make(map[uint64]define2.DatabaseInfo),
+		dbClientTable: make(map[uint64]*define2.DatabaseInfo),
 		apiTable:      make(map[string]*define2.APIInfo),
 	}
 	return Router.init()
@@ -43,7 +43,7 @@ func Run(listenPort int) error {
 type router struct {
 	ginRouter     *gin.Engine
 	port          int
-	dbClientTable map[uint64]define2.DatabaseInfo
+	dbClientTable map[uint64]*define2.DatabaseInfo
 	apiTable      map[string]*define2.APIInfo
 }
 
@@ -54,10 +54,11 @@ func (r *router) init() error {
 		if dbClient, err := r.getDatabaseClient(dbInstance); nil != err {
 			return err
 		} else {
-			r.dbClientTable[dbInstance.ID] = define2.DatabaseInfo{
-				Client: dbClient,
-				Flag:   dbInstance.Flag,
-				DbID:   dbInstance.ID,
+			r.dbClientTable[dbInstance.ID] = &define2.DatabaseInfo{
+				Client:   dbClient,
+				Flag:     dbInstance.Flag,
+				DbID:     dbInstance.ID,
+				ReadOnly: dbInstance.ReadOnly == 1,
 			}
 		}
 		routerGroupTable[dbInstance.ID] = r.ginRouter.Group(dbInstance.Flag)
@@ -169,7 +170,7 @@ func (r *router) proxy(ctx *gin.Context) {
 		return
 	}
 
-	if err = r.dbClientTable[apiConfig.DBInstanceID].Client.Raw(apiConfig.SQL).Scan(&result).Error; nil != err {
+	if result, err = Runtime.Execute(ctx, r.dbClientTable[apiConfig.DBInstanceID], apiConfig); nil != err {
 		ctx.JSON(http.StatusOK, gin.H{
 			"code":     500,
 			"message":  "sql 执行失败 : " + err.Error(),

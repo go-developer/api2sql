@@ -18,9 +18,10 @@ import (
 //
 // Date : 6:35 下午 2021/3/5
 type DatabaseInfo struct {
-	Client *gorm.DB
-	Flag   string
-	DbID   uint64
+	Client   *gorm.DB
+	Flag     string
+	DbID     uint64
+	ReadOnly bool
 }
 
 // APIInfo API数据结构
