@@ -30,6 +30,7 @@ type DatabaseInfo struct {
 //
 // Date : 5:52 下午 2021/3/5
 type APIInfo struct {
+	Method       string            `json:"method"`         // 接口请求方法
 	URI          string            `json:"uri"`            // 最终注册的uri(不包含分组前缀)
 	FullURI      string            `json:"full_uri"`       // 完整URI,包括分组前缀
 	SQL          string            `json:"sql"`            // 绑定的SQL语句
