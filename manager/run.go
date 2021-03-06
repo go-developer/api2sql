@@ -71,5 +71,8 @@ func (r *run) Execute(ctx *gin.Context, database *define.DatabaseInfo, apiInfo *
 	if err = database.Client.Raw(apiInfo.SQL, requestParam...).Scan(&result).Error; nil != err {
 		return nil, err
 	}
+	if nil == result {
+		result = make([]map[string]interface{}, 0)
+	}
 	return result, nil
 }

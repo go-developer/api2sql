@@ -202,9 +202,11 @@ func (r *router) proxy(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, gin.H{
-		"code":     0,
-		"message":  "请求成功",
-		"data":     result,
+		"code":    0,
+		"message": "请求成功",
+		"data": map[string]interface{}{
+			"list": result,
+		},
 		"trace_id": "",
 	})
 }
