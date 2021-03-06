@@ -1,27 +1,21 @@
-// Package api2sql...
+// Package example...
 //
-// Description : api2sql...
+// Description : example...
 //
 // Author : go_developer@163.com<张德满>
 //
-// Date : 2021-03-05 12:51 下午
-package api2sql
+// Date : 2021-03-06 1:40 下午
+package main
 
 import (
 	"fmt"
-	"testing"
 
 	"github.com/go-developer/api2sql/construct"
 	"github.com/go-developer/gopkg/logger"
 	"github.com/go-developer/gopkg/middleware/mysql"
 )
 
-// TestApi2SqlService ...
-//
-// Author : go_developer@163.com<张德满>
-//
-// Date : 12:54 下午 2021/3/5
-func TestApi2SqlService(t *testing.T) {
+func main() {
 	var err error
 	dbConfig := &mysql.DBConfig{
 		Host:              "127.0.0.1",
@@ -47,4 +41,5 @@ func TestApi2SqlService(t *testing.T) {
 		return
 	}
 	construct.Run(dbConfig, logConf, 19808)
+
 }
