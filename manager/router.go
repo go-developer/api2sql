@@ -30,9 +30,9 @@ import (
 var Router *router
 
 // Run 启动服务
-func Run(listenPort int) error {
+func Run(ginRouter *gin.Engine, listenPort int) error {
 	Router = &router{
-		ginRouter:     gin.Default(),
+		ginRouter:     ginRouter,
 		port:          listenPort,
 		dbClientTable: make(map[uint64]*define2.DatabaseInfo),
 		apiTable:      make(map[string]*define2.APIInfo),

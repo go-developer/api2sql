@@ -8,6 +8,7 @@
 package construct
 
 import (
+	"github.com/gin-gonic/gin"
 	"github.com/go-developer/api2sql/manager"
 	"github.com/go-developer/gopkg/middleware/mysql"
 )
@@ -39,8 +40,22 @@ func Run(dbConfig *mysql.DBConfig, logConf *mysql.LogConfig, listenPort int) err
 		return err
 	}
 	// 启动端口监听
-	if err := manager.Run(listenPort); nil != err {
+	ginRouter := gin.Default()
+
+	// 设置管理员使用的API
+	SetAdminApi(ginRouter)
+
+	if err := manager.Run(ginRouter, listenPort); nil != err {
 		return err
 	}
 	return nil
+}
+
+// SetAdminApi 设置管理员操作相关的API
+//
+// Author : go_developer@163.com<张德满>
+//
+// Date : 4:30 下午 2021/3/9
+func SetAdminApi(ginRouter *gin.Engine) {
+
 }
