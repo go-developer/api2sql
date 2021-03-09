@@ -8,6 +8,11 @@
 package construct
 
 import (
+	"fmt"
+	"reflect"
+
+	"github.com/go-developer/gopkg/gin/util"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-developer/api2sql/admin"
 	"github.com/go-developer/api2sql/manager"
@@ -59,6 +64,21 @@ func Run(dbConfig *mysql.DBConfig, logConf *mysql.LogConfig, listenPort int) err
 // Date : 4:30 下午 2021/3/9
 func SetAdminApi(ginRouter *gin.Engine) {
 	adminController := admin.NewDefaultAdminController()
-	getDatabaseURI, middlewareList, handler := adminController.GetDatabaseInstanceList()
-	ginRouter.GET(getDatabaseURI, handler).Use(middlewareList...)
+	iController := reflect.ValueOf(adminController)
+	methodCnt := iController.NumMethod()
+	fmt.Println(methodCnt)
+	for i := 0; i < methodCnt; i++ {
+		resultList := iController.Method(i).Call(nil)
+		method := resultList[0].String()
+		uri := resultList[1].String()
+		middlewareList := resultList[2].Interface().([]gin.HandlerFunc)
+		if nil == middlewareList {
+			middlewareList = make([]gin.HandlerFunc, 0)
+		}
+		handler := resultList[3].Interface().(gin.HandlerFunc)
+		ginRouter.GET(uri, handler).Use(middlewareList...)
+		if err := util.RegisterRouter(ginRouter, method, uri, handler); nil != err {
+			panic(err.Error())
+		}
+	}
 }

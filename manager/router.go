@@ -12,6 +12,8 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/go-developer/gopkg/gin/util"
+
 	"github.com/pkg/errors"
 
 	"github.com/go-developer/gopkg/logger"
@@ -84,26 +86,8 @@ func (r *router) init() error {
 			return err
 		}
 		r.apiTable[apiInfo.FullURI] = apiInfo
-		switch strings.ToUpper(apiInfo.Method) {
-		case http.MethodGet:
-			routerGroupTable[apiInfo.DBInstanceID].GET(apiInfo.URI, r.proxy)
-		case http.MethodPost:
-			routerGroupTable[apiInfo.DBInstanceID].POST(apiInfo.URI, r.proxy)
-		case http.MethodDelete:
-			routerGroupTable[apiInfo.DBInstanceID].DELETE(apiInfo.URI, r.proxy)
-		case http.MethodHead:
-			routerGroupTable[apiInfo.DBInstanceID].HEAD(apiInfo.URI, r.proxy)
-		case http.MethodOptions:
-			routerGroupTable[apiInfo.DBInstanceID].OPTIONS(apiInfo.URI, r.proxy)
-		case http.MethodPatch:
-			routerGroupTable[apiInfo.DBInstanceID].PATCH(apiInfo.URI, r.proxy)
-		case http.MethodPut:
-			routerGroupTable[apiInfo.DBInstanceID].PUT(apiInfo.URI, r.proxy)
-		case "ANY": // 一次性注册全部请求方法的路由
-			routerGroupTable[apiInfo.DBInstanceID].Any(apiInfo.URI, r.proxy)
-		default:
-			// 不是一个函数,数名method配置错误
-			return fmt.Errorf("api_id=%d uri=%s method=%s 请求方法配置错误", apiInfo.ApiID, apiInfo.URI, apiInfo.Method)
+		if err := util.RegisterRouterGroup(routerGroupTable[apiInfo.DBInstanceID], apiInfo.Method, apiInfo.URI, r.proxy); nil != err {
+			return err
 		}
 	}
 

@@ -20,17 +20,17 @@ type IController interface {
 	// Author : go_developer@163.com<张德满>
 	//
 	// Date : 4:42 下午 2021/3/9
-	GetDatabaseInstanceList() (uri string, middlewareList []gin.HandlerFunc, handler func(ctx *gin.Context))
+	GetDatabaseInstanceList() (method string, uri string, middlewareList []gin.HandlerFunc, handler gin.HandlerFunc)
 	// GetDatabaseInstanceDetail 获取已注册数据库实例详情
 	//
 	// Author : go_developer@163.com<张德满>
 	//
 	// Date : 4:44 下午 2021/3/9
-	GetDatabaseInstanceDetail() (uri string, middlewareList []gin.HandlerFunc, handler func(ctx *gin.Context))
+	GetDatabaseInstanceDetail() (method string, uri string, middlewareList []gin.HandlerFunc, handler gin.HandlerFunc)
 	// UpdateDatabaseInstance 更新数据库实例的信息
 	//
 	// Author : go_developer@163.com<张德满>
 	//
 	// Date : 4:45 下午 2021/3/9
-	UpdateDatabaseInstance() (uri string, middlewareList []gin.HandlerFunc, handler func(ctx *gin.Context))
+	UpdateDatabaseInstance() (method string, uri string, middlewareList []gin.HandlerFunc, handler gin.HandlerFunc)
 }
