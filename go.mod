@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/gin-gonic/gin v1.6.3
-	github.com/go-developer/gopkg v0.0.0-20210306061609-de99272b07a3
+	github.com/go-developer/gopkg v0.0.0-20210309100843-8bcd1a42948b
 	github.com/go-playground/validator/v10 v10.4.1 // indirect
 	github.com/golang/protobuf v1.4.3 // indirect
 	github.com/jonboulle/clockwork v0.2.2 // indirect
@@ -17,6 +17,7 @@ require (
 	github.com/ugorji/go v1.2.4 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	golang.org/x/crypto v0.0.0-20210220033148-5ea612d1eb83 // indirect
+	golang.org/x/sys v0.0.0-20210309074719-68d13333faf2 // indirect
 	google.golang.org/protobuf v1.25.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gorm.io/gorm v1.21.1

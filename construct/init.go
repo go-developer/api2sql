@@ -9,6 +9,7 @@ package construct
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/go-developer/api2sql/admin"
 	"github.com/go-developer/api2sql/manager"
 	"github.com/go-developer/gopkg/middleware/mysql"
 )
@@ -57,5 +58,7 @@ func Run(dbConfig *mysql.DBConfig, logConf *mysql.LogConfig, listenPort int) err
 //
 // Date : 4:30 下午 2021/3/9
 func SetAdminApi(ginRouter *gin.Engine) {
-
+	adminController := admin.NewDefaultAdminController()
+	getDatabaseURI, middlewareList, handler := adminController.GetDatabaseInstanceList()
+	ginRouter.GET(getDatabaseURI, handler).Use(middlewareList...)
 }
