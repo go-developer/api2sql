@@ -8,7 +8,9 @@
 package construct
 
 import (
+	"encoding/json"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-developer/gopkg/gin/util"
@@ -63,6 +65,12 @@ func Run(dbConfig *mysql.DBConfig, logConf *mysql.LogConfig, listenPort int) err
 //
 // Date : 4:30 下午 2021/3/9
 func SetAdminApi(ginRouter *gin.Engine) {
+	ginRouter.Group("admin").GET("getInfo", func(context *gin.Context) {
+		r := []byte(`{"code":0,"data":{"name":"admin","roles":["Home","Dashbord","Driver","Driver-index","Permission","PageUser","PageAdmin","Roles","Table","BaseTable","ComplexTable","Icons","Icons-index","Components","Sldie-yz","Upload","Carousel","Echarts","Sldie-chart","Dynamic-chart","Map-chart","Excel","Excel-out","Excel-in","Mutiheader-out","Error","Page404","Github","NavTest","Nav1","Nav2","Nav2-1","Nav2-2","Nav2-2-1","Nav2-2-2","*404"],"introduce":"七没几红必无再住会果须容备南什心受部走太广月层变给局由联从说强间业到那生四明说体与交维连义中反支存那。"},"_res":{"status":200}}`)
+		var result map[string]interface{}
+		json.Unmarshal(r, &result)
+		context.JSON(http.StatusOK, result)
+	})
 	adminController := admin.NewDefaultAdminController()
 	iController := reflect.ValueOf(adminController)
 	methodCnt := iController.NumMethod()
