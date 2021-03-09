@@ -9,6 +9,7 @@ package manager
 
 import "github.com/go-developer/api2sql/driver/define"
 
+// Database ...
 var Database *database
 
 // InitDatabase 初始化配置管理实例 TODO 当前直接使用mysql,后续升级成多驱动
@@ -50,4 +51,13 @@ func (d *database) init() error {
 // Date : 2:05 下午 2021/3/5
 func (d *database) GetAllDBInstance() []define.DBInstance {
 	return d.instanceList
+}
+
+// CreateDatabaseInstance  创建数据库实例
+//
+// Author : go_developer@163.com<张德满>
+//
+// Date : 11:47 下午 2021/3/9
+func (d *database) CreateDatabaseInstance(data define.DBInstance) (uint64, error) {
+	return Config.CreateDatabaseInstance(data)
 }

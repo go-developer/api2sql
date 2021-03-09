@@ -66,6 +66,28 @@ func (d *defaultController) GetDatabaseInstanceDetail() (method string, uri stri
 	}
 }
 
+func (d *defaultController) CreateDatabaseInstance() (method string, uri string, middlewareList []gin.HandlerFunc, handler gin.HandlerFunc) {
+	return http.MethodPost, "/admin/database/create", []gin.HandlerFunc{middleware.InitRequest()}, func(ctx *gin.Context) {
+		var (
+			err      error
+			formData define.DBInstance
+		)
+		if err = ctx.ShouldBindJSON(&formData); nil != err {
+			util.Response(ctx, -2, "创建数据库实例失败 : "+err.Error(), gin.H{})
+			return
+		}
+		if len(formData.Database) == 0 || len(formData.Host) == 0 || len(formData.Password) == 0 || len(formData.Flag) == 0 {
+			util.Response(ctx, -2, "创建数据库实例失败 : 参数错误", gin.H{})
+			return
+		}
+		if formData.ID, err = manager.Database.CreateDatabaseInstance(formData); nil != err {
+			util.Response(ctx, -2, "创建数据库实例失败 : "+err.Error(), gin.H{})
+			return
+		}
+		util.Response(ctx, 0, "创建数据库实例成功", gin.H{"db_id": fmt.Sprintf("%d", formData.ID)})
+	}
+}
+
 func (d *defaultController) UpdateDatabaseInstance() (method string, uri string, middlewareList []gin.HandlerFunc, handler gin.HandlerFunc) {
 	return
 	// panic("implement me")

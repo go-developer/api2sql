@@ -19,8 +19,10 @@ type Config interface {
 	Init() error
 	// LoadAllDatabaseConfig 加载全部的数据库配置
 	LoadAllDatabaseConfig() ([]define.DBInstance, error)
-	// 加载全部的API配置
+	// LoadAllAPIConfig 加载全部的API配置
 	LoadAllAPIConfig() ([]define.Api, error)
-	// 加载全部的API参数
+	// LoadAllAPIParamConfig 加载全部的API参数
 	LoadAllAPIParamConfig() ([]define.ApiParam, error)
+	// CreateDatabaseInstance 创建数据库实例
+	CreateDatabaseInstance(data define.DBInstance) (uint64, error)
 }

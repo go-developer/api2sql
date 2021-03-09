@@ -8,8 +8,11 @@
 package config
 
 import (
+	"time"
+
 	"github.com/go-developer/api2sql/driver/define"
 	"github.com/go-developer/gopkg/middleware/mysql"
+	"github.com/sony/sonyflake"
 	"gorm.io/gorm"
 )
 
@@ -94,4 +97,29 @@ func (m *Mysql) LoadAllAPIParamConfig() ([]define.ApiParam, error) {
 		return nil, err
 	}
 	return apiParamList, nil
+}
+
+// CreateDatabaseInstance 创建数据库实例
+//
+// Author : go_developer@163.com<张德满>
+//
+// Date : 11:45 下午 2021/3/9
+func (m *Mysql) CreateDatabaseInstance(data define.DBInstance) (uint64, error) {
+	data.ID = m.GetPrimaryID()
+	return data.ID, m.client.Create(data).Error
+}
+
+// GetPrimaryID 获取主键ID
+//
+// Author : go_developer@163.com<张德满>
+//
+// Date : 11:33 下午 2021/3/9
+func (m *Mysql) GetPrimaryID() uint64 {
+	sf := sonyflake.NewSonyflake(sonyflake.Settings{
+		StartTime:      time.Unix(1615305395, 0),
+		MachineID:      nil,
+		CheckMachineID: nil,
+	})
+	id, _ := sf.NextID()
+	return id
 }

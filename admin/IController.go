@@ -33,4 +33,10 @@ type IController interface {
 	//
 	// Date : 4:45 下午 2021/3/9
 	UpdateDatabaseInstance() (method string, uri string, middlewareList []gin.HandlerFunc, handler gin.HandlerFunc)
+	// CreateDatabaseInstance 创建数据库实例
+	//
+	// Author : go_developer@163.com<张德满>
+	//
+	// Date : 11:26 下午 2021/3/9
+	CreateDatabaseInstance() (method string, uri string, middlewareList []gin.HandlerFunc, handler gin.HandlerFunc)
 }
