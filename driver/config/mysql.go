@@ -106,6 +106,9 @@ func (m *Mysql) LoadAllAPIParamConfig() ([]define.ApiParam, error) {
 // Date : 11:45 下午 2021/3/9
 func (m *Mysql) CreateDatabaseInstance(data define.DBInstance) (uint64, error) {
 	data.ID = m.GetPrimaryID()
+	formatTime := time.Now().Format("2006-01-02 15:04:05")
+	data.CreateTime = formatTime
+	data.ModifyTime = formatTime
 	return data.ID, m.client.Create(data).Error
 }
 

@@ -15,21 +15,21 @@ import "time"
 //
 // Date : 9:36 下午 2021/3/4
 type DBInstance struct {
-	ID                uint64    `json:"id" gorm:"column:id"`                                   // 数据库ID
-	Flag              string    `json:"flag" gorm:"column:flag"`                               // 数据库标识(会作为URL前缀)
-	Host              string    `json:"host" gorm:"column:host"`                               // 数据库的地址
-	Port              uint      `json:"port" gorm:"column:port"`                               // 数据库的端口
-	Status            uint      `json:"status" gorm:"column:status"`                           // 0 - 待上线 1- 生效中 2 - 已下线
-	Database          string    `json:"database" gorm:"column:database"`                       // 使用的数据库名称
-	Username          string    `json:"username" gorm:"column:username"`                       // 连接的账号
-	Password          string    `json:"password" gorm:"column:password"`                       // 连接密码
-	DbCharset         string    `json:"db_charset" gorm:"column:db_charset"`                   // 数据库编码
-	ReadOnly          uint      `json:"read_only" gorm:"column:read_only"`                     // 是否只读数据库, 0 - 否 1 - 是
-	MaxConnection     uint      `json:"max_connection" gorm:"column:max_connection"`           // 最大的连接数,默认 50
-	MaxIdleConnection uint      `json:"max_idle_connection" gorm:"column:max_idle_connection"` // 最大空闲连接数，默认25
-	Description       string    `json:"description" gorm:"column:description"`                 // 数据库描述
-	CreateTime        time.Time `json:"create_time" gorm:"column:create_time"`                 // 创建时间
-	ModifyTime        time.Time `json:"modify_time" gorm:"column:modify_time"`                 // 更新时间
+	ID                uint64 `json:"id" gorm:"column:id"`                                   // 数据库ID
+	Flag              string `json:"flag" gorm:"column:flag"`                               // 数据库标识(会作为URL前缀)
+	Host              string `json:"host" gorm:"column:host"`                               // 数据库的地址
+	Port              uint   `json:"port" gorm:"column:port"`                               // 数据库的端口
+	Status            uint   `json:"status" gorm:"column:status"`                           // 0 - 待上线 1- 生效中 2 - 已下线
+	Database          string `json:"database" gorm:"column:database"`                       // 使用的数据库名称
+	Username          string `json:"username" gorm:"column:username"`                       // 连接的账号
+	Password          string `json:"password" gorm:"column:password"`                       // 连接密码
+	DbCharset         string `json:"db_charset" gorm:"column:db_charset"`                   // 数据库编码
+	ReadOnly          uint   `json:"read_only" gorm:"column:read_only"`                     // 是否只读数据库, 0 - 否 1 - 是
+	MaxConnection     uint   `json:"max_connection" gorm:"column:max_connection"`           // 最大的连接数,默认 50
+	MaxIdleConnection uint   `json:"max_idle_connection" gorm:"column:max_idle_connection"` // 最大空闲连接数，默认25
+	Description       string `json:"description" gorm:"column:description"`                 // 数据库描述
+	CreateTime        string `json:"create_time" gorm:"column:create_time"`                 // 创建时间
+	ModifyTime        string `json:"modify_time" gorm:"column:modify_time"`                 // 更新时间
 }
 
 // DBInstanceTableName 获取表名
@@ -117,7 +117,7 @@ type ApiParam struct {
 	ApiID        uint64    `json:"api_id" gorm:"column:api_id"`               // Param ID
 	Name         string    `json:"name" gorm:"column:name"`                   // 参数名
 	DataType     string    `json:"data_type" gorm:"column:data_type"`         // 参数类型
-	Sort         uint      `json:"sort" gorm:column:sort`                     // 参数的排序
+	Sort         uint      `json:"sort" gorm:"column:sort"`                   // 参数的排序
 	DefaultValue string    `json:"default_value" gorm:"column:default_value"` // 默认值
 	IsRequired   uint      `json:"is_required" gorm:"column:is_required"`     // 是否必传 0 - 否 1 - 是
 	Description  string    `json:"description" gorm:"column:description"`     // 参数描述
