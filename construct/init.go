@@ -71,12 +71,15 @@ func SetAdminApi(ginRouter *gin.Engine) {
 		resultList := iController.Method(i).Call(nil)
 		method := resultList[0].String()
 		uri := resultList[1].String()
+		if len(method) == 0 || len(uri) == 0 {
+			// 未配置,忽略
+			continue
+		}
 		middlewareList := resultList[2].Interface().([]gin.HandlerFunc)
 		if nil == middlewareList {
 			middlewareList = make([]gin.HandlerFunc, 0)
 		}
 		handler := resultList[3].Interface().(gin.HandlerFunc)
-		ginRouter.GET(uri, handler).Use(middlewareList...)
 		if err := util.RegisterRouter(ginRouter, method, uri, handler); nil != err {
 			panic(err.Error())
 		}
